@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>OlsaDomiNation - Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: black;
+        }
+
+        .background {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: url('images/background-pic.jpg') center/cover no-repeat;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .galaxy {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            opacity: 0;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .planet {
+            position: absolute;
+            width: clamp(50px, 15vw, 150px);
+            height: clamp(50px, 15vw, 150px);
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #d9d9d9, #8a8a8a, #2f2f2f);
+            box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.5),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.2),
+                0 0 20px rgba(255, 255, 255, 0.3);
+            animation: float 4s infinite ease-in-out alternate;
+            transition: transform 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .planet::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('images/cracks.png') center/cover no-repeat,
+                radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 70%);
+            mix-blend-mode: overlay;
+            opacity: 0.6;
+            z-index: 25;
+        }
+
+        .planet:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-15px);
+            }
+        }
+
+        #planet-personal-details {
+            top: 10%;
+            left: 8%;
+        }
+
+        #planet-education {
+            top: 35%;
+            left: 18%;
+            background: radial-gradient(circle at 30% 30%, #c2e0ff, #4d79ff, #001a66);
+        }
+
+        #planet-activism-volunteer {
+            top: 65%;
+            left: 25%;
+            background: radial-gradient(circle at 30% 30%, #fff4b3, #ffcc00, #b38600);
+        }
+
+        #planet-publications {
+            top: 30%;
+            left: 55%;
+            background: radial-gradient(circle at 30% 30%, #ffb3b3, #ff6666, #b30000);
+        }
+
+        #planet-tech-skills {
+            top: 70%;
+            left: 50%;
+            background: radial-gradient(circle at 30% 30%, #b3ffb3, #66ff66, #008000);
+        }
+
+        #planet-interviews {
+            bottom: 15%;
+            left: 75%;
+            background: radial-gradient(circle at 30% 30%, #ffb3ff, #ff66ff, #800080);
+        }
+
+        #planet-international-forums {
+            bottom: 50%;
+            left: 85%;
+            background: radial-gradient(circle at 30% 30%, #b3ffff, #66ffff, #008080);
+        }
+
+        @media (max-width: 1024px) {
+            #planet-personal-details {
+                top: 10%;
+                left: 5%;
+            }
+
+            #planet-education {
+                top: 25%;
+                left: 20%;
+            }
+
+            #planet-activism-volunteer {
+                top: 50%;
+                left: 10%;
+            }
+
+            #planet-publications {
+                top: 65%;
+                left: 30%;
+            }
+
+            #planet-tech-skills {
+                top: 25%;
+                left: 70%;
+            }
+
+            #planet-interviews {
+                top: 55%;
+                left: 75%;
+            }
+
+            #planet-international-forums {
+                top: 80%;
+                left: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title h1 {
+                font-size: 35px;
+            }
+            .title h3 {
+                font-size: 15px;
+            }
+            .planet {
+                width: clamp(150px, 30vw, 250px);
+                height: clamp(150px, 30vw, 250px);
+            }
+
+            .planet span {
+                font-size: 20px;
+            }
+
+            #planet-personal-details {
+                top: 15%;
+                left: 10%;
+            }
+
+            #planet-education {
+                top: 35%;
+                left: 15%;
+            }
+
+            #planet-activism-volunteer {
+                top: 55%;
+                left: 30%;
+            }
+
+            #planet-publications {
+                top: 70%;
+                left: 5%;
+            }
+
+            #planet-tech-skills {
+                top: 20%;
+                left: 60%;
+            }
+
+            #planet-interviews {
+                top: 60%;
+                left: 65%;
+            }
+
+            #planet-international-forums {
+                top: 80%;
+                left: 45%;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .title h1 {
+                font-size: 35px;
+            }
+            .title h3 {
+                font-size: 15px;
+            }
+            .planet {
+                width: clamp(130px, 20vw, 220px);
+                height: clamp(130px, 20vw, 220px);
+            }
+
+            .planet span {
+                font-size: 16px;
+            }
+
+            #planet-personal-details {
+                top: 20%;
+                left: 10%;
+            }
+
+            #planet-education {
+                top: 40%;
+                left: 15%;
+            }
+
+            #planet-activism-volunteer {
+                top: 60%;
+                left: 30%;
+            }
+
+            #planet-publications {
+                top: 75%;
+                left: 5%;
+            }
+
+            #planet-tech-skills {
+                top: 25%;
+                left: 60%;
+            }
+
+            #planet-interviews {
+                top: 50%;
+                left: 65%;
+            }
+
+            #planet-international-forums {
+                top: 80%;
+                left: 55%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <h1>Olsa DomiNation</h1>
+        <h3>Explore Beyond My Universe!</h3>
+    </div>
+
+    <div class="background"></div>
+    <div class="overlay"></div>
+    <div class="galaxy"></div>
+
+    <div id="planet-personal-details" class="planet" onclick="zoomIntoPlanet('planet-personal-details')"><span>Personal
+            details</span></div>
+    <div id="planet-education" class="planet" onclick="zoomIntoPlanet('planet-education')"><span>Education</span></div>
+    <div id="planet-activism-volunteer" class="planet" onclick="zoomIntoPlanet('planet-activism-volunteer')">
+        <span>Activism & Volunteer Work</span></div>
+    <div id="planet-publications" class="planet" onclick="zoomIntoPlanet('planet-publications')">
+        <span>Publications</span></div>
+    <div id="planet-tech-skills" class="planet" onclick="zoomIntoPlanet('planet-tech-skills')"><span>Tech-Skills</span>
+    </div>
+    <div id="planet-interviews" class="planet" onclick="zoomIntoPlanet('planet-interviews')"><span>Interviews</span>
+    </div>
+    <div id="planet-international-forums" class="planet" onclick="zoomIntoPlanet('planet-international-forums')">
+        <span>International Forums</span></div>
+
+    <div id="zoomed-content" class="zoomed-content hidden">
+        <button class="close-btn" onclick="zoomOut()">Close</button>
+        <div id="zoomed-details"></div>
+    </div>
+    <script>
+        function createStars(num) {
+            const galaxy = document.querySelector('.galaxy');
+            for (let i = 0; i < num; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                galaxy.appendChild(star);
+            }
+        }
+        createStars(window.innerWidth > 768 ? 200 : 80);
+    </script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
