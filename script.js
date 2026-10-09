@@ -1,3 +1,5 @@
+let lastFocusedPlanet = null;
+
 function zoomIntoPlanet(planetId) {
     // Hide all planets and title
     const planets = document.querySelectorAll('.planet');
@@ -12,10 +14,13 @@ function zoomIntoPlanet(planetId) {
 
     // Get the clicked planet's position and size
     const planet = document.getElementById(planetId);
+    lastFocusedPlanet = planet;
     const planetRect = planet.getBoundingClientRect();
 
     // Create a clone of the planet for the zoom effect
     const clone = planet.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.setAttribute('aria-hidden', 'true');
     clone.style.position = 'fixed';
     clone.style.top = `${planetRect.top}px`;
     clone.style.left = `${planetRect.left}px`;
@@ -37,6 +42,7 @@ function zoomIntoPlanet(planetId) {
     setTimeout(() => {
         document.getElementById('zoomed-content').classList.remove('hidden');
         document.getElementById('zoomed-content').classList.add('visible');
+        document.body.classList.add('dialog-open');
 
         // Add content based on the clicked planet
         const zoomedDetails = document.getElementById('zoomed-details');
@@ -49,17 +55,20 @@ function zoomIntoPlanet(planetId) {
                 <div class="details-section">
             <div class="info-block name-block">
                 <h2>Olsa Domi</h2>
-                <p>Student | Author | Activist</p>
+                <p>Full-Stack Developer | Author | Youth Advocate</p>
+                <p>Building digital solutions with social impact.</p>
             </div>
             <div class="info-block location-block">
-                <h3>Location</h3>
-                <p>Prishtinë | Gjakovë</p>
+                <h3>Current role</h3>
+                <p>Full-Stack Developer at Sogody</p>
+                <p>Previously QA Engineer Intern</p>
+                <p>Prishtina, Kosovo</p>
             </div>
             <div class="info-block languages-block">
                 <h3>Languages</h3>
                 <ul>
                     <li>Albanian (Native)</li>
-                    <li>English (Fluent)</li>
+                    <li>English (C1)</li>
                     <li>French (Elementary)</li>
                 </ul>
             </div>
@@ -78,38 +87,31 @@ function zoomIntoPlanet(planetId) {
                 zoomedDetails.innerHTML = `
                  <div class="details-section education-details">
             <div class="info-block high-school-block">
-                <h3>High School</h3>
-                <p class="hsname"><strong>"Hajdar Dushi" Gymnasium, Gjakovë</strong></p>
-                <p class="hsdegree">Natural Sciences (2020-2023)</p>
+                <h3>Master's Degree</h3>
+                <p class="hsname"><strong>University of Pristina</strong></p>
+                <p>Faculty of Electrical and Computer Engineering</p>
+                <p class="hsdegree">Computer and Software Engineering · 2026–present</p>
             </div>
             <div class="info-block university-block">
-                <h3>University</h3>
+                <h3>Bachelor's Degree</h3>
                 <p class="uniname"><strong>University of Prishtina</strong></p>
-                <p>Faculty of Computer and Electrical Engineering (FIEK)</p>
-                <p class="unidegree">Bachelor's degree, Computer and Software Engineering (2023)</p>
+                <p>Computer and Software Engineering · 2023–2026</p>
+                <p class="unidegree">Erasmus+ semester at Hellenic Mediterranean University, Crete</p>
             </div>
             <div class="info-block courses-block">
                 <h3>Courses</h3>
                 <div class="course-bubbles">
                     <div class="course-bubble">
-                        <p><strong>Digital School (2021)</strong></p>
-                        <p>HTML, CSS & JavaScript</p>
-                    </div>
-                    <div class="course-bubble">
-                        <p><strong>Romb Academy (2022)</strong></p>
-                        <p>Java Programming</p>
-                    </div>
-                    <div class="course-bubble">
-                        <p><strong>Arra Academy (2023)</strong></p>
-                        <p>Full-Stack Development</p>
-                    </div>
-                    <div class="course-bubble">
                         <p><strong>MakerMinds L.L.C. (2023)</strong></p>
                         <p>Java Programming</p>
                     </div>
                     <div class="course-bubble">
-                        <p><strong>GIZ Kosovo</strong></p>
-                        <p>Artificial Intelligence Bootcamp</p>
+                        <p><strong>Arra Academy (2022–2023)</strong></p>
+                        <p>Full-Stack Development</p>
+                    </div>
+                    <div class="course-bubble">
+                        <p><strong>GIZ Kosovo (2023)</strong></p>
+                        <p>AI XForm Bootcamp</p>
                     </div>
                 </div>
             </div>
@@ -123,37 +125,89 @@ function zoomIntoPlanet(planetId) {
                 <div class="details-section activism-details">
             <div class="activism-block">
                 <div class="activism-content">
-                    <h3>Youth Reference Group</h3>
-                    <p>UNICEF Kosovo</p>
+                    <p class="activity-date">September 2026</p>
+                    <h3>Inclusive AI Hackathon</h3>
+                    <p>Built an accessible-education solution with UNICEF Kosovo and its partners.</p>
+                    <a class="activity-link" href="https://unicef-project-steel.vercel.app/" target="_blank">View project</a>
                 </div>
                 <div class="activism-image">
-                    <img src="images/yrg.jpg" alt="Youth Reference Group">
+                    <img src="images/picupdated2.png" alt="Presenting the inclusive education project at UNICEF's Inclusive AI Hackathon" loading="lazy">
+                </div>
+            </div>
+            <div class="activism-block">
+                <div class="activism-content">
+                    <p class="activity-date">June 2026</p>
+                    <h3>Western Balkans Youth Forum</h3>
+                    <p>Developed regional recommendations for the Berlin Process youth agenda with RYCO in Budva.</p>
+                </div>
+                <div class="activism-image">
+                    <img src="images/picupdated1.png" alt="Speaking at RYCO's Western Balkans Youth Forum in Budva" loading="lazy">
+                </div>
+            </div>
+            <div class="activism-block">
+                <div class="activism-content">
+                    <p class="activity-date">April 2026</p>
+                    <h3>SHEcurity Conference &amp; CTF</h3>
+                    <p>Joined a conference and Capture the Flag event advancing women in cybersecurity.</p>
+                </div>
+                <div class="activism-image">
+                    <img src="images/picupdated3.png" alt="Speaking at the SHEcurity Conference and CTF 2026" loading="lazy">
+                </div>
+            </div>
+            <div class="activism-block">
+                <div class="activism-content">
+                    <p class="activity-date">June 2025</p>
+                    <h3>7th UN Youth Assembly</h3>
+                    <p>Guest speaker sharing my journey across engineering, publishing and international youth advocacy.</p>
+                </div>
+                <div class="activism-image">
+                    <img src="images/picupdated4.png" alt="Participating in the 7th United Nations Youth Assembly in Kosovo" loading="lazy">
+                </div>
+            </div>
+            <div class="activism-block">
+                <div class="activism-content">
+                    <p class="activity-date">April 2025</p>
+                    <h3>MOBILE-Y Youth Exchange</h3>
+                    <p>Built leadership, teamwork and intercultural skills with YMCA Sweden and YMCA Kosovo.</p>
+                </div>
+                <div class="activism-image">
+                    <img src="images/picupdated5.png" alt="Taking part in the MOBILE-Y youth exchange in Sweden" loading="lazy">
+                </div>
+            </div>
+            <div class="activism-block">
+                <div class="activism-content">
+                    <h3>Youth Reference Group</h3>
+                    <p>Group Facilitator · UNICEF Kosovo · 2024–present</p>
+                </div>
+                <div class="activism-image">
+                    <img src="images/yrg.jpg" alt="Youth Reference Group" loading="lazy">
                 </div>
             </div>
             <div class="activism-block">
                 <div class="activism-content">
                     <h3>YMCA Kosovo</h3>
+                    <p>Peer Lead · 2020–2022</p>
                 </div>
                 <div class="activism-image">
-                    <img src="images/ymca.jpg" alt="YMCA Kosovo">
+                    <img src="images/ymca.jpg" alt="YMCA Kosovo" loading="lazy">
                 </div>
             </div>
             <div class="activism-block">
                 <div class="activism-content">
-                    <h3>Western Balkans Youth Partners Group</h3>
-                    <p>UNICEF ECARO</p>
+                    <h3>Western Balkans Young Partners Group</h3>
+                    <p>Youth Activist · UNICEF ECARO · 2023–2025</p>
                 </div>
                 <div class="activism-image">
-                    <img src="images/wbypg.jpg" alt="Western Balkans Youth Partners Group">
+                    <img src="images/wbypg.jpg" alt="Western Balkans Youth Partners Group" loading="lazy">
                 </div>
             </div>
             <div class="activism-block">
                 <div class="activism-content">
                     <h3>Young People's Action Team</h3>
-                    <p>Generation Unlimited</p>
+                    <p>Member · Generation Unlimited · 2024–2026</p>
                 </div>
                 <div class="activism-image">
-                    <img src="images/ypat.jpg" alt="Young People's Action Team">
+                    <img src="images/ypat.jpg" alt="Young People's Action Team" loading="lazy">
                 </div>
             </div>
         </div>
@@ -170,7 +224,7 @@ function zoomIntoPlanet(planetId) {
                 </div>
                 <div class="publication-info">
                     <h3>"Brenda Universit Tim" ("Within My Universe")</h3>
-                    <p>June, 2020</p>
+                    <p>Philosophical novel · Blini BK · 2020</p>
                     <a href="https://www.instagram.com/p/CBnQKFdneaJ/?img_index=1" target="_blank" class="read-more-btn">Read More</a>
                 </div>
             </div>
@@ -180,7 +234,7 @@ function zoomIntoPlanet(planetId) {
                 </div>
                 <div class="publication-info">
                     <h3>"Formula Metaforike" ("The Metaphorical Formula")</h3>
-                    <p>October, 2022</p>
+                    <p>Philosophical &amp; social genre · Shkrola · 2022</p>
                     <a href="https://www.instagram.com/p/CkJJJFiLxI2/?img_index=1" target="_blank" class="read-more-btn">Read More</a>
                 </div>
             </div>
@@ -193,15 +247,17 @@ function zoomIntoPlanet(planetId) {
                 zoomedDetails.innerHTML = `
                 <div class="details-section tech-skills-details">
             <div class="skill-circle java">Java</div>
-            <div class="skill-square mysql">MySQL</div>
+            <div class="skill-square javascript">JavaScript</div>
+            <div class="skill-hexagon react">React</div>
+            <div class="skill-rhomb node">Node.js</div>
+            <div class="skill-circle python">Python</div>
+            <div class="skill-square php">PHP</div>
             <div class="skill-hexagon postgresql">PostgreSQL</div>
-            <div class="skill-rhomb wordpress">WordPress</div>
-            <div class="skill-circle html">HTML</div>
-            <div class="skill-square css">CSS</div>
-            <div class="skill-hexagon javascript">JavaScript</div>
-            <div class="skill-rhomb ai">AI</div>
-            <div class="skill-circle cpp">C++</div>
+            <div class="skill-rhomb sql">SQL</div>
+            <div class="skill-circle cpp">C / C++</div>
             <div class="skill-square csharp">C#</div>
+            <div class="skill-hexagon git">Git / GitLab</div>
+            <div class="skill-rhomb docker">Docker</div>
         </div>
                 <div class="planet-surface" style="background: ${surfaceColor};"></div>
                 `;
@@ -274,7 +330,7 @@ function zoomIntoPlanet(planetId) {
                     <img src="images/eye.jpg" alt="European Youth Event">
                 </div>
                 <h3>The European Youth Event - EYE (European Parliament, Strasbourg)</h3>
-                <p>June, 2023</p>
+                <p>Workshop Facilitator · June 2023</p>
                 <a href="https://www.unicef.org/eca/media/30161/file/Bulletin%205%20July%202023.pdf" target="_blank" class="forum-btn">View Bulletin</a>
             </div>
             <div class="forum-block">
@@ -282,7 +338,7 @@ function zoomIntoPlanet(planetId) {
                     <img src="images/wbsummit.jpg" alt="Western Balkans Summit">
                 </div>
                 <h3>The Western Balkans Summit (Friend of Europe, Brussels)</h3>
-                <p>December, 2023</p>
+                <p>Kosovo Representative, Future Panel · December 2023</p>
                 <a href="https://www.instagram.com/p/C0kSGiILZ7a/" target="_blank" class="forum-btn">Watch Speech</a>
             </div>
             <div class="forum-block">
@@ -290,7 +346,7 @@ function zoomIntoPlanet(planetId) {
                     <img src="images/etf.jpg" alt="Empowering Futures Event">
                 </div>
                 <h3>“Empowering Futures: Demystifying Career Pathways through a Youth Lens” (ETF & UNICEF ECARO, Brussels)</h3>
-                <p>March, 2024</p>
+                <p>Workshop Facilitator · March 2024</p>
                 <a href="https://www.unicef.org/eca/media/34181/file/Learning%20for%20careers%20ECARO.pdf" target="_blank" class="forum-btn">Download Report</a>
             </div>
         </div>
@@ -306,6 +362,11 @@ function zoomIntoPlanet(planetId) {
                 `;
         }
 
+        zoomedDetails.querySelectorAll('a[target="_blank"]').forEach(link => {
+            link.rel = 'noopener noreferrer';
+        });
+        document.getElementById('zoomed-content').setAttribute('aria-label', planet.textContent.trim());
+        document.querySelector('.close-btn').focus();
         clone.remove();
     }, 500);
 }
@@ -313,7 +374,8 @@ function zoomIntoPlanet(planetId) {
 function zoomOut() {
     const zoomedContent = document.getElementById('zoomed-content');
     zoomedContent.classList.remove('visible');
-    zoomedContent.classList.add('hidden');
+    window.setTimeout(() => zoomedContent.classList.add('hidden'), 250);
+    document.body.classList.remove('dialog-open');
 
     const planets = document.querySelectorAll('.planet');
     planets.forEach(planet => {
@@ -322,10 +384,42 @@ function zoomOut() {
 
     const title = document.querySelector('.title');
     title.style.opacity = '1';
+    if (lastFocusedPlanet) lastFocusedPlanet.focus();
 }
 
-const planetSurface = document.querySelector('.planet-surface');
+document.querySelectorAll('.planet').forEach(planet => {
+    planet.addEventListener('click', () => zoomIntoPlanet(planet.dataset.section));
+});
+
+document.querySelector('.close-btn').addEventListener('click', zoomOut);
+
+document.getElementById('zoomed-content').addEventListener('click', event => {
+    if (event.target.id === 'zoomed-content') zoomOut();
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !document.getElementById('zoomed-content').classList.contains('hidden')) zoomOut();
+});
+
+function createStars(total) {
+    const galaxy = document.querySelector('.galaxy');
+    const fragment = document.createDocumentFragment();
+    for (let index = 0; index < total; index += 1) {
+        const star = document.createElement('span');
+        star.className = 'star';
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 3}s`;
+        fragment.appendChild(star);
+    }
+    galaxy.appendChild(fragment);
+}
+
+createStars(window.innerWidth > 768 ? 140 : 70);
+
 document.addEventListener('mousemove', (e) => {
+    const planetSurface = document.querySelector('.planet-surface');
+    if (!planetSurface || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const x = (e.clientX / window.innerWidth - 0.5) * 20;
     const y = (e.clientY / window.innerHeight - 0.5) * 20;
     planetSurface.style.transform = `perspective(500px) rotateX(${y}deg) rotateY(${x}deg)`;
