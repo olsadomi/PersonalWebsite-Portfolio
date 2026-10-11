@@ -52,31 +52,63 @@ function zoomIntoPlanet(planetId) {
             case 'planet-personal-details':
                 surfaceColor = 'radial-gradient(circle at 30% 30%, #d9d9d9, #8a8a8a, #2f2f2f)';
                 zoomedDetails.innerHTML = `
-                <div class="details-section">
+                <div class="details-section personal-details">
             <div class="info-block name-block">
                 <h2>Olsa Domi</h2>
-                <p>Full-Stack Developer | Author | Youth Advocate</p>
-                <p>Building digital solutions with social impact.</p>
+                <div class="course-bubbles personal-bubbles">
+                    <div class="course-bubble">
+                        <h4>Web Developer · Author · Youth Advocate</h4>
+                        <p>Building digital solutions with social impact.</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Based in</h4>
+                        <p>Prishtina, Kosovo</p>
+                    </div>
+                </div>
             </div>
             <div class="info-block location-block">
-                <h3>Current role</h3>
-                <p>Full-Stack Developer at Sogody</p>
-                <p>Previously QA Engineer Intern</p>
-                <p>Prishtina, Kosovo</p>
+                <h3>Experience</h3>
+                <div class="course-bubbles personal-bubbles">
+                    <div class="course-bubble">
+                        <h4>Web Developer</h4>
+                        <p>Sogody · Full-time</p>
+                        <p class="credential-meta">August 2026–Present · Pristina</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Quality Assurance Intern</h4>
+                        <p>Sogody · Internship</p>
+                        <p class="credential-meta">April–August 2026 · Pristina</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Social Media Manager</h4>
+                        <p>Domi &amp; Rochas · Full-time</p>
+                        <p class="credential-meta">June 2021–September 2023 · Kosovo</p>
+                    </div>
+                </div>
             </div>
             <div class="info-block languages-block">
                 <h3>Languages</h3>
-                <ul>
-                    <li>Albanian (Native)</li>
-                    <li>English (C1)</li>
-                    <li>French (Elementary)</li>
-                </ul>
+                <div class="course-bubbles personal-bubbles compact-bubbles">
+                    <div class="course-bubble"><h4>Albanian</h4><p>Native</p></div>
+                    <div class="course-bubble"><h4>English</h4><p>C1 · Professional proficiency</p></div>
+                </div>
             </div>
             <div class="info-block contact-block">
                 <h3>Contact</h3>
-                <p>Email: olsadomi@gmail.com</p>
-                <p>LinkedIn: <a href="https://linkedin.com/in/olsa-domi-019612273" target="_blank">My LinkedIn Profile</a></p>
-                <p>GitHub: <a href="https://github.com/olsadomi" target="_blank">My GitHub Profile</a></p>
+                <div class="course-bubbles personal-bubbles compact-bubbles">
+                    <a class="course-bubble contact-link" href="mailto:olsadomi@gmail.com" aria-label="Connect by email">
+                        <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.5l7 5 7-5V7H5Zm14 10V9.9l-7 5-7-5V17h14Z"/></svg>
+                        <span>Connect</span>
+                    </a>
+                    <a class="course-bubble contact-link linkedin-link" href="https://linkedin.com/in/olsa-domi-019612273" target="_blank" aria-label="View LinkedIn profile">
+                        <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.7a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.3 9.8h3.8V21H3.3V9.8Zm6.1 0H13v1.5h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.7V21h-3.8v-5.2c0-1.2 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V21H9.4V9.8Z"/></svg>
+                        <span>View profile</span>
+                    </a>
+                    <a class="course-bubble contact-link" href="https://github.com/olsadomi" target="_blank" aria-label="View GitHub profile">
+                        <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 2.9.9.1-.7.4-1.1.6-1.4-2.3-.3-4.6-1.1-4.6-5A3.9 3.9 0 0 1 6.7 8.6a3.6 3.6 0 0 1 .1-2.8s.8-.3 2.8 1.1a9.5 9.5 0 0 1 5.1 0c2-1.4 2.8-1.1 2.8-1.1a3.6 3.6 0 0 1 .1 2.8 3.9 3.9 0 0 1 1.1 2.8c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 2V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+                        <span>View profile</span>
+                    </a>
+                </div>
             </div>
         </div>
                 <div class="planet-surface" style="background: ${surfaceColor};"></div>
@@ -88,30 +120,94 @@ function zoomIntoPlanet(planetId) {
                  <div class="details-section education-details">
             <div class="info-block high-school-block">
                 <h3>Master's Degree</h3>
-                <p class="hsname"><strong>University of Pristina</strong></p>
-                <p>Faculty of Electrical and Computer Engineering</p>
-                <p class="hsdegree">Computer and Software Engineering · 2026–present</p>
+                <div class="course-bubbles education-bubbles">
+                    <div class="course-bubble">
+                        <h4>Computer and Software Engineering</h4>
+                        <p>University of Pristina</p>
+                        <p>Faculty of Electrical and Computer Engineering</p>
+                        <p class="credential-meta">2026–Present</p>
+                    </div>
+                </div>
             </div>
             <div class="info-block university-block">
                 <h3>Bachelor's Degree</h3>
-                <p class="uniname"><strong>University of Prishtina</strong></p>
-                <p>Computer and Software Engineering · 2023–2026</p>
-                <p class="unidegree">Erasmus+ semester at Hellenic Mediterranean University, Crete</p>
+                <div class="course-bubbles education-bubbles">
+                    <div class="course-bubble">
+                        <h4>BSc in Computer and Software Engineering</h4>
+                        <p>University of Pristina</p>
+                        <p class="credential-meta">2023–2026</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Erasmus+ Semester</h4>
+                        <p>Hellenic Mediterranean University · Crete</p>
+                        <p class="credential-meta">2025–2026</p>
+                    </div>
+                </div>
             </div>
             <div class="info-block courses-block">
-                <h3>Courses</h3>
-                <div class="course-bubbles">
+                <h3>Licenses &amp; Certifications</h3>
+                <div class="course-bubbles certification-list" tabindex="0" aria-label="Scrollable licenses and certifications">
                     <div class="course-bubble">
-                        <p><strong>MakerMinds L.L.C. (2023)</strong></p>
-                        <p>Java Programming</p>
+                        <h4>Using Git for Distributed Development</h4>
+                        <p>The Linux Foundation</p>
+                        <p class="credential-meta">Issued June 2026</p>
+                        <p class="credential-id">Credential ID: Y7XRRZ9DJGA5</p>
                     </div>
                     <div class="course-bubble">
-                        <p><strong>Arra Academy (2022–2023)</strong></p>
-                        <p>Full-Stack Development</p>
+                        <h4>DevOps and AI on AWS: AIOps</h4>
+                        <p>Amazon Web Services</p>
+                        <p class="credential-meta">Issued June 2026</p>
+                        <p class="credential-id">Credential ID: LI2U5KB2U44I</p>
                     </div>
                     <div class="course-bubble">
-                        <p><strong>GIZ Kosovo (2023)</strong></p>
-                        <p>AI XForm Bootcamp</p>
+                        <h4>AI XForm Bootcamp</h4>
+                        <p>GIZ Kosovo</p>
+                        <p class="credential-meta">Issued September 2023 · Artificial Intelligence</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Introduction to Programming Using Java</h4>
+                        <p>MakerMinds L.L.C.</p>
+                        <p class="credential-meta">Issued June 2023 · Java</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Participation in EYE2023</h4>
+                        <p>European Parliament</p>
+                        <p class="credential-meta">2023 · Facilitation</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Full Stack Developer</h4>
+                        <p>Arra Academy</p>
+                        <p class="credential-meta">Issued January 2023 · Full-Stack Development</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Volunteering Appreciation</h4>
+                        <p>YMCA Europe</p>
+                        <p class="credential-meta">Issued December 2022</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Gold Award Leadership Certification</h4>
+                        <p>YMCA Kosovo</p>
+                        <p class="credential-meta">Issued June 2022 · Peer Leadership</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Java Programming Fundamentals</h4>
+                        <p>Romb Academy</p>
+                        <p class="credential-meta">Issued June 2022 · Java</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Effective Leadership</h4>
+                        <p>HP Foundation</p>
+                        <p class="credential-meta">Issued March 2022</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Success Mindset</h4>
+                        <p>HP Foundation</p>
+                        <p class="credential-meta">Issued February 2022</p>
+                    </div>
+                    <div class="course-bubble">
+                        <h4>Introduction to Programming Using HTML and CSS</h4>
+                        <p>Digital School</p>
+                        <p class="credential-meta">Issued June 2021 · Front-End Development</p>
                     </div>
                 </div>
             </div>
@@ -177,7 +273,7 @@ function zoomIntoPlanet(planetId) {
             <div class="activism-block">
                 <div class="activism-content">
                     <h3>Youth Reference Group</h3>
-                    <p>Group Facilitator · UNICEF Kosovo · 2024–present</p>
+                    <p>Group Facilitator · UNICEF Kosovo · 2024–Present</p>
                 </div>
                 <div class="activism-image">
                     <img src="images/yrg.jpg" alt="Youth Reference Group" loading="lazy">
@@ -416,11 +512,3 @@ function createStars(total) {
 }
 
 createStars(window.innerWidth > 768 ? 140 : 70);
-
-document.addEventListener('mousemove', (e) => {
-    const planetSurface = document.querySelector('.planet-surface');
-    if (!planetSurface || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-    planetSurface.style.transform = `perspective(500px) rotateX(${y}deg) rotateY(${x}deg)`;
-});
